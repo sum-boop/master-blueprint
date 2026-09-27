@@ -1,0 +1,463 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+================================================================
+ AI STACK — MASTER OPERATIONS GUIDEBOOK  (PDF Infographic Gen)
+================================================================
+ Creates a print-ready A4 infographic PDF.
+
+ INSTALL :  pip install reportlab
+ RUN     :  python ai_stack_infographic.py
+ OUTPUT  :  AI_Stack_Guidebook.pdf
+================================================================
+"""
+
+from reportlab.lib.pagesizes import A4
+from reportlab.lib.colors import HexColor, white
+from reportlab.pdfgen import canvas
+from reportlab.pdfbase import pdfmetrics
+
+W, H = A4
+M    = 40.0
+CW   = W - 2 * M
+
+# ── PALETTE ────────────────────────────────────────────────────
+NAVY   = HexColor("#0b1220")
+NAVY2  = HexColor("#111c33")
+SLATE  = HexColor("#334155")
+RED    = HexColor("#e11d48")
+ORANGE = HexColor("#ea580c")
+AMBER  = HexColor("#f59e0b")
+GREEN  = HexColor("#059669")
+CYAN   = HexColor("#0891b2")
+BLUE   = HexColor("#2563eb")
+PURPLE = HexColor("#7c3aed")
+PINK   = HexColor("#db2777")
+LIGHT  = HexColor("#f1f5f9")
+LIGHT2 = HexColor("#e2e8f0")
+GREY   = HexColor("#64748b")
+DARK   = HexColor("#0f172a")
+WHITE  = white
+
+# ── PRIMITIVE HELPERS ──────────────────────────────────────────
+def card(c, x, y, w, h, fill=LIGHT, radius=6, stroke=None, sw=0.6):
+    c.setFillColor(fill)
+    if stroke is not None:
+        c.setStrokeColor(stroke); c.setLineWidth(sw)
+    c.roundRect(x, y, w, h, radius,
+                stroke=1 if stroke is not None else 0, fill=1)
+
+def txt(c, s, x, y, font="Helvetica", size=9, color=DARK):
+    c.setFont(font, size); c.setFillColor(color); c.drawString(x, y, s)
+
+def txt_r(c, s, x, y, font="Helvetica", size=9, color=DARK):
+    c.setFont(font, size); c.setFillColor(color); c.drawRightString(x, y, s)
+
+def txt_c(c, s, x, y, font="Helvetica", size=9, color=DARK):
+    c.setFont(font, size); c.setFillColor(color); c.drawCentredString(x, y, s)
+
+def wrap(c, s, x, y, maxw, font="Helvetica", size=8, leading=10, color=DARK):
+    c.setFont(font, size); c.setFillColor(color)
+    words, line, lines = s.split(), "", []
+    for word in words:
+        t = (line + " " + word).strip()
+        if pdfmetrics.stringWidth(t, font, size) <= maxw:
+            line = t
+        else:
+            if line: lines.append(line)
+            line = word
+    if line: lines.append(line)
+    for i, ln in enumerate(lines):
+        c.drawString(x, y - i * leading, ln)
+    return y - len(lines) * leading
+
+def pill(c, x, y, label, fill, tcolor=WHITE, fsize=7.5, pad=8, h=13):
+    w = pdfmetrics.stringWidth(label, "Helvetica-Bold", fsize) + pad * 2
+    card(c, x, y, w, h, fill=fill, radius=h / 2)
+    txt_c(c, label, x + w / 2, y + h / 2 - fsize * 0.35,
+          "Helvetica-Bold", fsize, tcolor)
+    return w
+
+def footer(c, page, total=4):
+    c.setStrokeColor(LIGHT2); c.setLineWidth(0.5)
+    c.line(M, 40, W - M, 40)
+    txt(c, "AI STACK  ·  Master Operations Guidebook  ·  Zero-Payroll Autonomous Vibe Coding",
+        M, 30, "Helvetica", 7, GREY)
+    txt_r(c, "PAGE %d / %d" % (page, total), W - M, 30, "Helvetica-Bold", 7, GREY)
+
+def page_header(c, title, subtitle, accent):
+    c.setFillColor(NAVY); c.rect(0, H - 62, W, 62, stroke=0, fill=1)
+    c.setFillColor(accent); c.rect(0, H - 66, W, 4, stroke=0, fill=1)
+    txt(c, title,    M, H - 36, "Helvetica-Bold", 17, WHITE)
+    txt(c, subtitle, M, H - 51, "Helvetica", 8, HexColor("#94a3b8"))
+
+# ══════════════════════════════════════════════════════════════
+# DATA
+# ══════════════════════════════════════════════════════════════
+ROSTER = [
+    ("EXECUTIVE & MANAGEMENT", RED, [
+        ("Sumit",          "Founder & CEO  ·  Product Vision"),
+        ("Gemini",         "AI CEO / Ops  ·  Pipeline Orchestration"),
+        ("Keshav",         "Chief Human Officer  ·  Reality Testing"),
+        ("Perplexity AI",  "Chief of Staff  ·  Market Intel"),
+        ("ChatGPT Voice",  "Exec Assistant  ·  Voice Synthesis"),
+        ("Taskade AI",     "Eng Manager  ·  Sprint Board"),
+    ]),
+    ("ENGINEERING & ARCHITECTURE", BLUE, [
+        ("DeepSeek",       "System Architect  ·  Data Models"),
+        ("Claude",         "Lead Frontend  ·  React / TypeScript"),
+        ("v0 by Vercel",   "UI Specialist  ·  Tailwind ($0/mo)"),
+        ("Lovable.dev",    "Full-Stack Scaffolder (5/day)"),
+        ("Qwen Code",      "CLI Workhorse  ·  Backend Scripts"),
+        ("Bolt.new",       "Site Engineer  ·  GitHub Sync"),
+    ]),
+    ("DEVOPS & QA", GREEN, [
+        ("GitHub Actions",  "DevOps Lead  ·  CI/CD (2,000 min)"),
+        ("Gemini AI Studio","Diagnostics  ·  1M Token Debug"),
+        ("Trae AI",         "Desktop Intern  ·  Local Edits"),
+    ]),
+]
+
+PIPELINE = [
+    ("Research",       "Perplexity",      "CEO requests market gap analysis for an app idea.",            CYAN),
+    ("Brainstorm",     "ChatGPT",         "CEO dictates voice notes; ChatGPT structures features.",       CYAN),
+    ("Architecture",   "DeepSeek",        "Generates the strict file tree and database schema.",          BLUE),
+    ("Project Mgmt",   "Taskade",         "Blueprint is converted into actionable sprint tickets.",       PURPLE),
+    ("Scaffolding",    "Lovable / v0",    "Core UI and full-stack baselines are generated.",              PURPLE),
+    ("Core Logic",     "Claude / Qwen",   "Complex components & massive backend scripts written.",        BLUE),
+    ("Assembly & Sync","Bolt.new",        "Code pasted into Bolt; pushed directly to GitHub.",            GREEN),
+    ("Deployment",     "GitHub Actions",  "Push triggers auto-deployment to live web hosting.",           GREEN),
+    ("Diagnostics",    "Gemini Studio",   "Build fails → repo dumped for instant debugging.",             AMBER),
+    ("Reality Test",   "Keshav",          "Live link sent to Keshav for the ultimate human friction test.", RED),
+]
+
+DISCORD = [
+    ("#ceo-office",            "Sumit's command center.",            RED),
+    ("#perplexity-reports",    "Market intel dumps.",                ORANGE),
+    ("#chatgpt-brainstorming", "Formatted voice notes.",             ORANGE),
+    ("#taskade-sprints",       "Active ticket tracking.",            PURPLE),
+    ("#deepseek-blueprints",   "Master architectural plans.",        BLUE),
+    ("#v0-lovable-ui",         "Visual component code.",             CYAN),
+    ("#claude-qwen-code",      "Raw logic scripts.",                 BLUE),
+    ("#bolt-github-builds",    "Deployment links.",                  GREEN),
+    ("#keshav-smoke-tests",    "Human UX feedback & bug reports.",   PINK),
+]
+
+SOPS = [
+    ("SOP A  —  THE ARCHITECTURE PROMPT", "FEED TO DEEPSEEK", BLUE,
+     '"Act as System Architect. I need a master blueprint for [APP IDEA]. Do not write full code yet. '
+     'Provide: 1) Competitor gap filled. 2) Core tech stack. 3) Exact file tree structure. '
+     '4) Data schema mapping. Output strictly in markdown."'),
+
+    ("SOP B  —  THE COMPONENT PROMPT", "FEED TO CLAUDE", PURPLE,
+     '"Act as Lead Frontend. Using this blueprint [PASTE BLUEPRINT], write the logic for [SPECIFIC FEATURE]. '
+     'Output only modular, production-ready React/TypeScript snippets. Do not output boilerplate. '
+     'Format so I can feed this directly into Bolt.new for assembly."'),
+
+    ("SOP C  —  THE HUMAN AUDIT", "SEND TO KESHAV", RED,
+     '"New build deployed: [PASTE LINK]. Run the 30-Second Smoke Test. Try to break the navigation, '
+     'test the buttons, and drop screenshots of any UX friction in your Discord channel."'),
+]
+
+TREE_LINES = [
+    "ai-stack-app/",
+    "├─ .github/",
+    "│  └─ workflows/deploy.yml       # CI/CD (GitHub Actions)",
+    "├─ public/",
+    "│  ├─ favicon.ico",
+    "│  └─ robots.txt",
+    "├─ src/",
+    "│  ├─ app/",
+    "│  │  ├─ layout.tsx              # root shell",
+    "│  │  ├─ page.tsx                # landing route",
+    "│  │  └─ globals.css             # tailwind base",
+    "│  ├─ components/",
+    "│  │  ├─ ui/                     # v0 generated atoms",
+    "│  │  └─ features/               # Claude feature logic",
+    "│  ├─ lib/",
+    "│  │  ├─ supabase.ts             # db client",
+    "│  │  └─ utils.ts                # shared helpers",
+    "│  ├─ hooks/                     # custom react hooks",
+    "│  └─ types/                     # TS interfaces",
+    "├─ supabase/",
+    "│  └─ migrations/                # SQL schema files",
+    "├─ .env.local                    # secrets (never commit)",
+    "├─ next.config.js",
+    "├─ package.json",
+    "├─ tailwind.config.ts",
+    "└─ tsconfig.json",
+]
+
+SETUP = [
+    ("Clone the repo",       "git clone <your-repo-url>\ncd ai-stack-app"),
+    ("Install dependencies", "npm install"),
+    ("Configure environment","cp .env.example .env.local\n# add Supabase keys"),
+    ("Run dev server",       "npm run dev"),
+    ("Push to GitHub",       "git add . && git commit -m 'init'\ngit push origin main"),
+    ("Auto-deploy",          "# GitHub Actions runs deploy.yml\n# on every push to main"),
+    ("Verify build",         "# check #bolt-github-builds\n# in Discord HQ"),
+    ("Human audit",          "# send live link to Keshav\n# for 30-second smoke test"),
+]
+
+LOOP = ["RESEARCH", "BRAINSTORM", "ARCHITECT", "BUILD", "DEPLOY", "TEST"]
+
+# ══════════════════════════════════════════════════════════════
+# PAGE 1 — IDENTITY + ROSTER + LOOP
+# ══════════════════════════════════════════════════════════════
+def page1(c):
+    # Banner
+    c.setFillColor(NAVY); c.rect(0, H - 120, W, 120, stroke=0, fill=1)
+    seg = W / 4.0
+    for i, col in enumerate([RED, ORANGE, CYAN, PURPLE]):
+        c.setFillColor(col)
+        c.rect(i * seg, H - 124, seg, 4, stroke=0, fill=1)
+
+    txt(c, "AI STACK", M, H - 55, "Helvetica-Bold", 34, WHITE)
+    txt(c, "MASTER OPERATIONS GUIDEBOOK", M + 2, H - 78, "Helvetica-Bold", 11, CYAN)
+    txt(c, "Zero-payroll  ·  Mobile-first  ·  Autonomous vibe coding",
+        M + 2, H - 96, "Helvetica", 8.5, HexColor("#94a3b8"))
+    txt_r(c, "v1.0", W - M, H - 55, "Helvetica-Bold", 10, HexColor("#475569"))
+    txt_r(c, "BUDGET  $0.00", W - M, H - 96, "Helvetica-Bold", 9, GREEN)
+
+    # Identity cards
+    top = H - 140
+    ch  = 64
+    gap = 12
+    cwid = (CW - 2 * gap) / 3
+
+    identities = [
+        ("MISSION", RED,
+         "Zero-payroll, mobile-first autonomous vibe coding."),
+        ("CORE RULE", ORANGE,
+         "100% high-level product vision, 0% manual syntax overhead."),
+        ("HEADQUARTERS", CYAN,
+         "Discord (Comms)  +  GitHub (Codebase / Deployment)."),
+    ]
+    for i, (title, col, body) in enumerate(identities):
+        x = M + i * (cwid + gap)
+        card(c, x, top - ch, cwid, ch, fill=LIGHT, radius=8, stroke=LIGHT2)
+        c.setFillColor(col); c.rect(x, top - ch, 4, ch, stroke=0, fill=1)
+        txt(c, title, x + 14, top - 18, "Helvetica-Bold", 8, col)
+        wrap(c, body, x + 14, top - 34, cwid - 26, "Helvetica", 8, 10, DARK)
+
+    # Budget strip
+    bs_y = top - ch - 12 - 26
+    card(c, M, bs_y, CW, 26, fill=NAVY, radius=6)
+    txt(c, "OPERATING BUDGET", M + 14, bs_y + 9, "Helvetica-Bold", 8, HexColor("#94a3b8"))
+    txt(c, "$0.00", M + 135, bs_y + 8, "Helvetica-Bold", 11, GREEN)
+    txt(c, "—  Strictly enforced free-tier exploitation",
+        M + 180, bs_y + 9, "Helvetica-Oblique", 8, HexColor("#cbd5e1"))
+
+    # Roster
+    txt(c, "THE ROSTER", M, 570, "Helvetica-Bold", 14, DARK)
+    c.setFillColor(RED); c.rect(M, 561, 34, 2.5, stroke=0, fill=1)
+    txt(c, "Human + AI operatives across three divisions",
+        M + 130, 570, "Helvetica", 8, GREY)
+
+    col_w   = (CW - 2 * 14) / 3
+    col_top = 545
+    for i, (title, color, members) in enumerate(ROSTER):
+        x = M + i * (col_w + 14)
+        card(c, x, col_top - 22, col_w, 22, fill=color, radius=5)
+        txt(c, title, x + 10, col_top - 15, "Helvetica-Bold", 7.5, WHITE)
+
+        yy = col_top - 28
+        for name, role in members:
+            card(c, x, yy - 42, col_w, 42, fill=LIGHT, radius=5, stroke=LIGHT2, sw=0.4)
+            c.setFillColor(color); c.rect(x, yy - 42, 3, 42, stroke=0, fill=1)
+            txt(c, name, x + 11, yy - 15, "Helvetica-Bold", 8.5, DARK)
+            wrap(c, role, x + 11, yy - 26, col_w - 20, "Helvetica", 6.8, 8.5, GREY)
+            yy -= 46
+
+    # Operating loop
+    loop_top = 180
+    txt(c, "THE OPERATING LOOP", M, loop_top + 46, "Helvetica-Bold", 11, DARK)
+    c.setFillColor(GREEN); c.rect(M, loop_top + 38, 28, 2.2, stroke=0, fill=1)
+
+    n = len(LOOP)
+    arrow_w = 16
+    pill_w = (CW - (n - 1) * arrow_w) / n
+    px = M
+    for i, label in enumerate(LOOP):
+        col = [CYAN, CYAN, BLUE, PURPLE, GREEN, RED][i]
+        card(c, px, loop_top, pill_w, 26, fill=col, radius=13)
+        txt_c(c, label, px + pill_w / 2, loop_top + 10,
+              "Helvetica-Bold", 6.8, WHITE)
+        px += pill_w
+        if i < n - 1:
+            txt_c(c, ">", px + arrow_w / 2, loop_top + 10,
+                  "Helvetica-Bold", 10, GREY)
+            px += arrow_w
+
+    footer(c, 1)
+
+# ══════════════════════════════════════════════════════════════
+# PAGE 2 — 10-STEP PIPELINE
+# ══════════════════════════════════════════════════════════════
+def page2(c):
+    page_header(c, "THE 10-STEP EXECUTION PIPELINE",
+                "From idea to live app — a fully autonomous chain of command", RED)
+
+    col_w = (CW - 20) / 2
+    row_h = 62
+    gap   = 10
+    top   = H - 100
+
+    for i, (title, agent, desc, col) in enumerate(PIPELINE):
+        cc  = i % 2
+        rr  = i // 2
+        x   = M + cc * (col_w + 20)
+        y   = top - rr * (row_h + gap) - row_h
+
+        card(c, x, y, col_w, row_h, fill=LIGHT, radius=7, stroke=LIGHT2, sw=0.5)
+        c.setFillColor(col); c.rect(x, y, 3.5, row_h, stroke=0, fill=1)
+
+        # number circle
+        cxc = x + 24
+        cyc = y + row_h - 22
+        c.setFillColor(col); c.circle(cxc, cyc, 11, stroke=0, fill=1)
+        txt_c(c, str(i + 1), cxc, cyc - 4, "Helvetica-Bold", 10, WHITE)
+
+        # title + agent
+        txt(c, title, x + 42, y + row_h - 16, "Helvetica-Bold", 10, DARK)
+        pill(c, x + 42, y + row_h - 30, agent, col, WHITE, 6.5, 6, 12)
+
+        # description
+        wrap(c, desc, x + 42, y + row_h - 42, col_w - 56,
+             "Helvetica", 7.2, 9, SLATE)
+
+    # Bottom banner
+    by = 340
+    card(c, M, by, CW, 34, fill=NAVY, radius=7)
+    txt_c(c, "10 STEPS   ·   0 SYNTAX WRITTEN BY HUMANS   ·   $0.00 BURN RATE",
+          W / 2, by + 13, "Helvetica-Bold", 9.5, HexColor("#7dd3fc"))
+
+    footer(c, 2)
+
+# ══════════════════════════════════════════════════════════════
+# PAGE 3 — DISCORD HQ + SOPs
+# ══════════════════════════════════════════════════════════════
+def page3(c):
+    page_header(c, "DISCORD HQ  +  MASTER SOPs",
+                "Routing map and copy-paste prompt protocols", PURPLE)
+
+    # ── Discord routing ──
+    txt(c, "DISCORD HQ ROUTING", M, H - 100, "Helvetica-Bold", 13, DARK)
+    c.setFillColor(PURPLE); c.rect(M, H - 107, 34, 2.5, stroke=0, fill=1)
+
+    dcol_w = (CW - 2 * 12) / 3
+    dtop   = H - 120
+    for i, (name, desc, col) in enumerate(DISCORD):
+        rr, cc2 = divmod(i, 3)
+        x = M + cc2 * (dcol_w + 12)
+        y = dtop - rr * 50 - 42
+        card(c, x, y, dcol_w, 42, fill=LIGHT, radius=6, stroke=LIGHT2, sw=0.5)
+        c.setFillColor(col); c.rect(x, y, 3.5, 42, stroke=0, fill=1)
+        txt(c, name, x + 11, y + 26, "Helvetica-Bold", 7.6, DARK)
+        wrap(c, desc, x + 11, y + 15, dcol_w - 20, "Helvetica", 6.6, 8, GREY)
+
+    # ── SOPs ──
+    sop_top = 550
+    txt(c, "MASTER STANDARD OPERATING PROCEDURES", M, sop_top, "Helvetica-Bold", 13, DARK)
+    c.setFillColor(RED); c.rect(M, sop_top - 7, 34, 2.5, stroke=0, fill=1)
+
+    yy = sop_top - 22
+    for title, target, col, body in SOPS:
+        h = 96
+        card(c, M, yy - h, CW, h, fill=LIGHT, radius=7, stroke=LIGHT2, sw=0.5)
+        c.setFillColor(col); c.rect(M, yy - h, 4, h, stroke=0, fill=1)
+
+        txt(c, title, M + 16, yy - 20, "Helvetica-Bold", 9.5, col)
+
+        # target pill (right aligned)
+        pw = pdfmetrics.stringWidth(target, "Helvetica-Bold", 7) + 16
+        card(c, W - M - pw - 12, yy - 27, pw, 14, fill=col, radius=7)
+        txt_c(c, target, W - M - pw / 2 - 12, yy - 23,
+              "Helvetica-Bold", 7, WHITE)
+
+        # body quote
+        wrap(c, body, M + 16, yy - 44, CW - 34,
+             "Helvetica-Oblique", 7.8, 10.5, SLATE)
+
+        yy -= h + 12
+
+    footer(c, 3)
+
+# ══════════════════════════════════════════════════════════════
+# PAGE 4 — REPO BLUEPRINT + SETUP RUNBOOK
+# ══════════════════════════════════════════════════════════════
+def page4(c):
+    page_header(c, "REPO BLUEPRINT  +  SETUP GUIDE",
+                "DeepSeek file tree and the zero-cost deployment runbook", GREEN)
+
+    # ── File tree ──
+    txt(c, "MASTER FILE TREE", M, H - 100, "Helvetica-Bold", 13, DARK)
+    c.setFillColor(GREEN); c.rect(M, H - 107, 34, 2.5, stroke=0, fill=1)
+
+    tree_y = H - 120
+    tree_h = 282
+    card(c, M, tree_y - tree_h, CW, tree_h, fill=NAVY, radius=8)
+
+    ty = tree_y - 20
+    for line in TREE_LINES:
+        stripped = line.strip()
+        last = stripped.split()[-1] if stripped.split() else ""
+        is_file = ("." in last) and not last.endswith("/")
+        c.setFont("Courier", 8.2)
+        c.setFillColor(HexColor("#cbd5e1") if is_file else HexColor("#67e8f9"))
+        c.drawString(M + 16, ty, line)
+        ty -= 9.4
+
+    # ── Setup runbook ──
+    su_top = tree_y - tree_h - 26
+    txt(c, "SETUP & DEPLOYMENT RUNBOOK", M, su_top, "Helvetica-Bold", 13, DARK)
+    c.setFillColor(BLUE); c.rect(M, su_top - 7, 34, 2.5, stroke=0, fill=1)
+
+    scol_w = (CW - 14) / 2
+    stop   = su_top - 16
+    sh     = 76
+    sgap   = 82
+
+    for i, (title, body) in enumerate(SETUP):
+        rr, cc2 = divmod(i, 2)
+        x = M + cc2 * (scol_w + 14)
+        y = stop - rr * sgap - sh
+
+        card(c, x, y, scol_w, sh, fill=LIGHT, radius=7, stroke=LIGHT2, sw=0.5)
+
+        # step number
+        c.setFillColor(BLUE); c.circle(x + 17, y + sh - 18, 10, stroke=0, fill=1)
+        txt_c(c, str(i + 1), x + 17, y + sh - 22, "Helvetica-Bold", 9, WHITE)
+
+        txt(c, title, x + 34, y + sh - 21, "Helvetica-Bold", 8.6, DARK)
+
+        # terminal block
+        card(c, x + 12, y + 8, scol_w - 24, 40, fill=NAVY2, radius=5)
+        c.setFont("Courier", 6.8)
+        c.setFillColor(HexColor("#86efac"))
+        for j, ln in enumerate(body.split("\n")):
+            c.drawString(x + 18, y + 36 - j * 9.5, ln)
+
+    footer(c, 4)
+
+# ══════════════════════════════════════════════════════════════
+# MAIN
+# ══════════════════════════════════════════════════════════════
+def main():
+    out = "AI_Stack_Guidebook.pdf"
+    c = canvas.Canvas(out, pagesize=A4)
+    c.setTitle("AI Stack — Master Operations Guidebook")
+    c.setAuthor("Sumit / Gemini Ops")
+    c.setSubject("Zero-Payroll Autonomous Vibe Coding — Ops Manual")
+
+    page1(c); c.showPage()
+    page2(c); c.showPage()
+    page3(c); c.showPage()
+    page4(c); c.showPage()
+    c.save()
+
+    print("[OK] Generated ->", out)
+    print("     Open it and hit Print (A4, fit to page).")
+
+if __name__ == "__main__":
+    main()
