@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stack - Setup Part 5</title>
+    <title>AI Stack - Setup Part 7</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
@@ -43,7 +43,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #f97316, #eab308, #ef4444);
+            background: linear-gradient(90deg, #8b5cf6, #c026d3, #a855f7);
         }
 
         header {
@@ -52,9 +52,9 @@
         }
 
         .part-badge {
-            background: rgba(249, 115, 22, 0.1);
-            color: #f97316;
-            border: 1px solid rgba(249, 115, 22, 0.3);
+            background: rgba(139, 92, 246, 0.1);
+            color: #a78bfa;
+            border: 1px solid rgba(139, 92, 246, 0.3);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -96,7 +96,7 @@
 
         .module-card:hover {
             transform: translateY(-5px);
-            border-color: #f97316;
+            border-color: #8b5cf6;
         }
 
         .icon-circle {
@@ -110,9 +110,9 @@
             margin-bottom: 1.5rem;
         }
 
-        .bg-orange { background: rgba(249, 115, 22, 0.1); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.2); }
-        .bg-yellow { background: rgba(234, 179, 8, 0.1); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.2); }
-        .bg-red { background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2); }
+        .bg-purple { background: rgba(139, 92, 246, 0.1); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.2); }
+        .bg-fuchsia { background: rgba(192, 38, 211, 0.1); color: #e879f9; border: 1px solid rgba(192, 38, 211, 0.2); }
+        .bg-violet { background: rgba(168, 85, 247, 0.1); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.2); }
 
         .module-title {
             font-size: 1.1rem;
@@ -139,7 +139,7 @@
 
         .module-list li::before {
             content: '→';
-            color: #fb923c;
+            color: #a78bfa;
             font-weight: bold;
         }
 
@@ -154,44 +154,43 @@
 
     <div class="infographic-wrapper">
         <header>
-            <div class="part-badge">Part 5 of 10</div>
-            <h1>THE BUILD ENGINE</h1>
-            <div class="subtitle">Compiling logic, executing heavy scripts, and syncing live code directly to GitHub.</div>
+            <div class="part-badge">Part 7 of 10</div>
+            <h1>DIAGNOSTICS & QA</h1>
+            <div class="subtitle">Utilizing 1M token context windows for full-repository bug hunting and stack trace analysis.</div>
         </header>
 
         <div class="grid-container">
             
             <!-- Module 1 -->
             <div class="module-card">
-                <div class="icon-circle bg-orange">💻</div>
-                <div class="module-title">1. Qwen Code Setup</div>
+                <div class="icon-circle bg-purple">🔍</div>
+                <div class="module-title">1. Gemini Studio</div>
                 <ul class="module-list">
-                    <li>Access via Alibaba Cloud portal or local terminal interface.</li>
-                    <li>Authenticate using the free-tier API key.</li>
-                    <li>Route heavy database scripts here to exploit the 2,000 daily no-limit requests.</li>
-                    <li>Drop outputs into <code>#claude-qwen-code</code>.</li>
+                    <li>Access Google AI Studio with the unified corporate account.</li>
+                    <li>Create a reusable prompt template named "Repo Audit".</li>
+                    <li>Keep a local ZIP of the GitHub repository handy for rapid uploads.</li>
                 </ul>
             </div>
 
             <!-- Module 2 -->
             <div class="module-card">
-                <div class="icon-circle bg-yellow">⚡</div>
-                <div class="module-title">2. Bolt.new Integration</div>
+                <div class="icon-circle bg-fuchsia">🐛</div>
+                <div class="module-title">2. The Debug Loop</div>
                 <ul class="module-list">
-                    <li>Open in mobile or desktop browser and click "Continue with GitHub".</li>
-                    <li>Authorize access strictly to the <strong>AI-Stack-HQ</strong> repository.</li>
-                    <li>Paste combined Claude/v0 code here for automated file segregation and live previews.</li>
+                    <li>When GitHub Actions fails, download the terminal build logs.</li>
+                    <li>Drop the logs AND the entire repo ZIP into Gemini's 1M token window.</li>
+                    <li>Prompt: "Find the exact syntax error causing this build failure."</li>
                 </ul>
             </div>
 
             <!-- Module 3 -->
             <div class="module-card">
-                <div class="icon-circle bg-red">🔄</div>
-                <div class="module-title">3. Direct Repo Sync</div>
+                <div class="icon-circle bg-violet">🛠️</div>
+                <div class="module-title">3. Resolution Sync</div>
                 <ul class="module-list">
-                    <li>Never copy-paste raw files manually across the pipeline.</li>
-                    <li>Click Bolt's native "Push to GitHub" button to commit changes directly.</li>
-                    <li>Monitor the <code>#bolt-github-builds</code> Discord channel to confirm successful syncs.</li>
+                    <li>Copy the isolated code fix provided by Gemini.</li>
+                    <li>Feed the corrected code back into Bolt.new or Qwen to apply the patch.</li>
+                    <li>Log the post-mortem in the <code>#gemini-diagnostics</code> Discord channel.</li>
                 </ul>
             </div>
 
