@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stack - Setup Part 1</title>
+    <title>AI Stack - Setup Part 2</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
@@ -36,7 +36,6 @@
             overflow: hidden;
         }
 
-        /* Decorative top glow */
         .infographic-wrapper::before {
             content: '';
             position: absolute;
@@ -44,7 +43,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #3b82f6, #8b5cf6, #f59e0b);
+            background: linear-gradient(90deg, #06b6d4, #10b981, #ec4899);
         }
 
         header {
@@ -53,9 +52,9 @@
         }
 
         .part-badge {
-            background: rgba(59, 130, 246, 0.1);
-            color: #3b82f6;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(6, 182, 212, 0.1);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.3);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -71,6 +70,7 @@
             font-weight: 900;
             letter-spacing: -0.5px;
             margin-bottom: 0.5rem;
+            text-transform: uppercase;
         }
 
         .subtitle {
@@ -96,7 +96,7 @@
 
         .module-card:hover {
             transform: translateY(-5px);
-            border-color: #3b82f6;
+            border-color: #06b6d4;
         }
 
         .icon-circle {
@@ -110,9 +110,9 @@
             margin-bottom: 1.5rem;
         }
 
-        .bg-google { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); }
-        .bg-github { background: rgba(248, 250, 252, 0.1); color: #f8fafc; border: 1px solid rgba(248, 250, 252, 0.2); }
-        .bg-discord { background: rgba(88, 101, 242, 0.1); color: #5865f2; border: 1px solid rgba(88, 101, 242, 0.2); }
+        .bg-cyan { background: rgba(6, 182, 212, 0.1); color: #06b6d4; border: 1px solid rgba(6, 182, 212, 0.2); }
+        .bg-green { background: rgba(16, 185, 129, 0.1); color: #10b981; border: 1px solid rgba(16, 185, 129, 0.2); }
+        .bg-pink { background: rgba(236, 72, 153, 0.1); color: #ec4899; border: 1px solid rgba(236, 72, 153, 0.2); }
 
         .module-title {
             font-size: 1.1rem;
@@ -139,7 +139,7 @@
 
         .module-list li::before {
             content: '→';
-            color: #3b82f6;
+            color: #06b6d4;
             font-weight: bold;
         }
 
@@ -154,43 +154,46 @@
 
     <div class="infographic-wrapper">
         <header>
-            <div class="part-badge">Part 1 of 10</div>
-            <h1>THE COMMAND CENTER</h1>
-            <div class="subtitle">Establishing the core identity, codebase, and communication hubs.</div>
+            <div class="part-badge">Part 2 of 10</div>
+            <h1>STRATEGY & INTELLIGENCE</h1>
+            <div class="subtitle">Deploying the Front Office for Market Research, Dictation, and Sprint Planning.</div>
         </header>
 
         <div class="grid-container">
             
             <!-- Module 1 -->
             <div class="module-card">
-                <div class="icon-circle bg-google">🔑</div>
-                <div class="module-title">1. Unified Auth</div>
+                <div class="icon-circle bg-cyan">🔍</div>
+                <div class="module-title">1. Perplexity AI</div>
                 <ul class="module-list">
-                    <li>Create dedicated corporate email (sumit.aistack@gmail.com).</li>
-                    <li>Use exclusively for "Continue with Google" across all AI platforms.</li>
-                    <li>Prevents free-tier token overlaps with your personal accounts.</li>
+                    <li>Log in using the unified corporate Google account.</li>
+                    <li>Set the default search engine mode strictly to "Pro Search".</li>
+                    <li>Run the "Chief of Staff" prompt to identify market gaps.</li>
+                    <li>Route PDF reports to Discord <code>#perplexity-reports</code>.</li>
                 </ul>
             </div>
 
             <!-- Module 2 -->
             <div class="module-card">
-                <div class="icon-circle bg-github">🐙</div>
-                <div class="module-title">2. Central Code Hub</div>
+                <div class="icon-circle bg-green">🎙️</div>
+                <div class="module-title">2. ChatGPT (Voice)</div>
                 <ul class="module-list">
-                    <li>Create a private GitHub account linked to the unified email.</li>
-                    <li>Initialize the master repo: <strong>AI-Stack-HQ</strong>.</li>
-                    <li>Generate a Personal Access Token (PAT) for CLI/Desktop agent syncing.</li>
+                    <li>Install the mobile app and enable background microphone access.</li>
+                    <li>Dictate raw product ideas and feature requests while pacing.</li>
+                    <li>Command it to format transcripts into clean 3-point bulleted lists.</li>
+                    <li>Drop structured lists into <code>#chatgpt-brainstorming</code>.</li>
                 </ul>
             </div>
 
             <!-- Module 3 -->
             <div class="module-card">
-                <div class="icon-circle bg-discord">💬</div>
-                <div class="module-title">3. Discord HQ</div>
+                <div class="icon-circle bg-pink">📋</div>
+                <div class="module-title">3. Taskade AI</div>
                 <ul class="module-list">
-                    <li>Launch server and establish channels (Strategy, Eng, DevOps).</li>
-                    <li>Generate Webhooks for AI Agents to post directly to channels.</li>
-                    <li>Send permanent invite link to Keshav (CHO) for UX reporting.</li>
+                    <li>Create a dedicated workspace named "Startup Sprint Board".</li>
+                    <li>Map native Taskade integration directly to Discord's webhooks.</li>
+                    <li>Feed ChatGPT's structured lists to Taskade's AI agent to auto-generate Kanban tickets.</li>
+                    <li>Track daily pipeline progress in <code>#taskade-sprints</code>.</li>
                 </ul>
             </div>
 
