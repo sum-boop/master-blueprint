@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stack - Setup Part 8</title>
+    <title>AI Stack - Setup Part 9</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
@@ -43,7 +43,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
+            background: linear-gradient(90deg, #f59e0b, #fbbf24, #fcd34d);
         }
 
         header {
@@ -52,9 +52,9 @@
         }
 
         .part-badge {
-            background: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.3);
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -96,7 +96,7 @@
 
         .module-card:hover {
             transform: translateY(-5px);
-            border-color: #3b82f6;
+            border-color: #fbbf24;
         }
 
         .icon-circle {
@@ -110,9 +110,9 @@
             margin-bottom: 1.5rem;
         }
 
-        .bg-blue { background: rgba(37, 99, 235, 0.1); color: #60a5fa; border: 1px solid rgba(37, 99, 235, 0.2); }
-        .bg-sky { background: rgba(14, 165, 233, 0.1); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.2); }
-        .bg-indigo { background: rgba(79, 70, 229, 0.1); color: #818cf8; border: 1px solid rgba(79, 70, 229, 0.2); }
+        .bg-amber { background: rgba(245, 158, 11, 0.1); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.2); }
+        .bg-yellow { background: rgba(234, 179, 8, 0.1); color: #facc15; border: 1px solid rgba(234, 179, 8, 0.2); }
+        .bg-orange { background: rgba(249, 115, 22, 0.1); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.2); }
 
         .module-title {
             font-size: 1.1rem;
@@ -139,7 +139,7 @@
 
         .module-list li::before {
             content: '→';
-            color: #60a5fa;
+            color: #fbbf24;
             font-weight: bold;
         }
 
@@ -154,43 +154,43 @@
 
     <div class="infographic-wrapper">
         <header>
-            <div class="part-badge">Part 8 of 10</div>
-            <h1>THE DESKTOP AGENT</h1>
-            <div class="subtitle">Bringing autonomous agentic editing to local environments when projects outgrow the browser.</div>
+            <div class="part-badge">Part 9 of 10</div>
+            <h1>HUMAN-IN-THE-LOOP</h1>
+            <div class="subtitle">Empowering the Chief Human Officer (Keshav) for live UX friction audits and reality testing.</div>
         </header>
 
         <div class="grid-container">
             
             <!-- Module 1 -->
             <div class="module-card">
-                <div class="icon-circle bg-blue">💻</div>
-                <div class="module-title">1. Trae AI Client</div>
+                <div class="icon-circle bg-amber">📱</div>
+                <div class="module-title">1. The Smoke Test</div>
                 <ul class="module-list">
-                    <li>Download the free Trae AI IDE desktop client.</li>
-                    <li>Authenticate using the unified corporate GitHub account.</li>
-                    <li>Clone the <strong>AI-Stack-HQ</strong> repository locally to your machine.</li>
+                    <li>Keshav monitors the <code>#bolt-github-builds</code> channel for live deployment links.</li>
+                    <li>Immediately opens the app on a physical mobile device.</li>
+                    <li>Conducts a rapid 30-second friction test to identify fatal UI/UX crashes.</li>
                 </ul>
             </div>
 
             <!-- Module 2 -->
             <div class="module-card">
-                <div class="icon-circle bg-sky">🤖</div>
-                <div class="module-title">2. Agentic Refactoring</div>
+                <div class="icon-circle bg-yellow">👁️</div>
+                <div class="module-title">2. Reality Audit</div>
                 <ul class="module-list">
-                    <li>Utilize Trae when your app becomes too complex for Bolt.new's mobile browser environment.</li>
-                    <li>Prompt the built-in AI agent to execute sweeping, multi-file codebase refactors autonomously.</li>
-                    <li>Review the file tree changes before committing.</li>
+                    <li>Evaluates the application specifically from a "Non-Tech Person" perspective.</li>
+                    <li>Tests buttons, navigation flow, and screen responsiveness.</li>
+                    <li>Verifies that AI-generated copywriting sounds natural and relatable.</li>
                 </ul>
             </div>
 
             <!-- Module 3 -->
             <div class="module-card">
-                <div class="icon-circle bg-indigo">🔄</div>
-                <div class="module-title">3. Pipeline Re-entry</div>
+                <div class="icon-circle bg-orange">📢</div>
+                <div class="module-title">3. Feedback Loop</div>
                 <ul class="module-list">
-                    <li>Commit and push the locally edited code back to the GitHub master branch.</li>
-                    <li>This action automatically re-triggers GitHub Actions (Part 6).</li>
-                    <li>The DevOps loop deploys the heavy desktop edits seamlessly to the live URL.</li>
+                    <li>Takes screenshots of any broken, overlapping, or confusing elements.</li>
+                    <li>Posts visual evidence and brief critique directly into <code>#keshav-smoke-tests</code>.</li>
+                    <li>CEO processes the feedback into new Kanban tickets for the AI engineers.</li>
                 </ul>
             </div>
 
