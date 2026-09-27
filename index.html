@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stack - Master Blueprint</title>
+    <title>AI Stack Headquarters - Discord Architecture</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -23,7 +23,7 @@
             justify-content: center;
         }
 
-        .dashboard-container {
+        .hq-container {
             max-width: 1200px;
             width: 100%;
             background: #0a0e17;
@@ -36,18 +36,18 @@
         /* HEADER STYLES */
         header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
             border-bottom: 1px solid #1e293b;
             padding-bottom: 1.5rem;
         }
 
         h1 {
-            color: #3b82f6;
+            color: #5865f2; /* Discord Purple */
             font-size: 2.5rem;
             font-weight: 700;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            text-shadow: 0 0 15px rgba(88, 101, 242, 0.4);
             margin-bottom: 0.5rem;
         }
 
@@ -59,351 +59,314 @@
             text-transform: uppercase;
         }
 
-        /* GRID LAYOUT */
-        .grid-layout {
+        /* GRID LAYOUT FOR DISCORD CATEGORIES */
+        .discord-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.25rem;
             margin-bottom: 2rem;
         }
 
-        .col-exec { grid-column: 1; grid-row: 1; }
-        .col-devops { grid-column: 1; grid-row: 2; }
-        .col-strat { grid-column: 2; grid-row: 1 / span 2; }
-        .col-eng { grid-column: 3; grid-row: 1 / span 2; }
-
-        /* CATEGORY BOXES */
-        .category-box {
+        .category-card {
             background: #0d121c;
             border: 1px solid #1e293b;
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1.25rem;
             display: flex;
             flex-direction: column;
             gap: 1rem;
         }
 
-        .category-title {
-            font-size: 0.85rem;
+        .category-header {
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 0.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #1e293b;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        .t-gold { color: #f59e0b; }
-        .t-blue { color: #3b82f6; }
-        .t-green { color: #10b981; }
-        .t-purple { color: #8b5cf6; }
+        .c-exec { color: #f59e0b; }
+        .c-strat { color: #3b82f6; }
+        .c-eng { color: #10b981; }
+        .c-devops { color: #8b5cf6; }
 
-        /* ROLE CARDS */
-        .card {
+        .channel-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .channel-item {
             background: #111827;
             border: 1px solid #1f2937;
             border-radius: 6px;
-            padding: 1rem;
-            transition: border-color 0.2s;
+            padding: 0.75rem;
         }
 
-        .card:hover {
-            border-color: #374151;
-        }
-
-        .card-role {
-            font-size: 0.65rem;
-            color: #6b7280;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .card-name {
-            font-size: 1.1rem;
+        .channel-name {
+            font-size: 0.85rem;
             font-weight: 600;
             color: #f3f4f6;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.2rem;
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .card-desc {
-            font-size: 0.75rem;
+        .channel-name::before {
+            content: "#";
+            color: #6b7280;
+            font-weight: 400;
+        }
+
+        .channel-desc {
+            font-size: 0.7rem;
             color: #9ca3af;
-            line-height: 1.4;
+            line-height: 1.3;
         }
 
-        /* PIPELINE SECTION */
-        .pipeline-section {
+        .channel-bot {
+            display: inline-block;
+            margin-top: 0.4rem;
+            font-size: 0.6rem;
+            font-weight: 600;
+            color: #5865f2;
+            background: rgba(88, 101, 242, 0.1);
+            border: 1px solid rgba(88, 101, 242, 0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        /* ROLES SECTION */
+        .roles-section {
             background: #0d121c;
             border: 1px solid #1e293b;
             border-radius: 8px;
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
-        .pipeline-title {
-            font-size: 0.85rem;
+        .roles-title {
+            font-size: 0.8rem;
             font-weight: 700;
-            color: #3b82f6;
+            color: #5865f2;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            margin-bottom: 1rem;
         }
 
-        .pipeline-flow {
+        .roles-grid {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
+            gap: 1rem;
             flex-wrap: wrap;
         }
 
-        .step {
+        .role-badge {
             background: #111827;
             border: 1px solid #1f2937;
-            padding: 0.75rem;
             border-radius: 6px;
+            padding: 0.75rem 1rem;
             flex: 1;
-            min-width: 80px;
-            text-align: center;
+            min-width: 180px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .step-num {
-            font-size: 0.65rem;
-            color: #6b7280;
-            margin-bottom: 2px;
+        .role-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            flex-shrink: 0;
         }
 
-        .step-name {
-            font-size: 0.75rem;
+        .dot-gold { background: #f59e0b; box-shadow: 0 0 8px #f59e0b; }
+        .dot-purple { background: #a855f7; box-shadow: 0 0 8px #a855f7; }
+        .dot-blue { background: #3b82f6; box-shadow: 0 0 8px #3b82f6; }
+        .dot-green { background: #10b981; box-shadow: 0 0 8px #10b981; }
+
+        .role-info-name {
+            font-size: 0.8rem;
             font-weight: 600;
             color: #f3f4f6;
-            margin-bottom: 2px;
         }
 
-        .step-desc {
+        .role-info-assign {
             font-size: 0.65rem;
             color: #9ca3af;
         }
 
-        .arrow {
-            color: #3b82f6;
-            font-size: 1rem;
+        @media (max-width: 992px) {
+            .discord-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 992px) {
-            .grid-layout {
+        @media (max-width: 576px) {
+            .discord-grid {
                 grid-template-columns: 1fr;
             }
-            .col-strat { grid-column: 1; grid-row: auto; }
-            .col-eng { grid-column: 1; grid-row: auto; }
-            .col-devops { grid-column: 1; grid-row: auto; }
-            
-            .pipeline-flow {
+            .roles-grid {
                 flex-direction: column;
-                align-items: stretch;
-            }
-            .arrow {
-                text-align: center;
-                transform: rotate(90deg);
-                margin: 5px 0;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="dashboard-container">
+    <div class="hq-container">
         <header>
-            <h1>AI STACK</h1>
-            <div class="subtitle">MASTER STARTUP ORGANIZATIONAL BLUEPRINT • ZERO-PAYROLL ENGINE</div>
+            <h1>AI STACK HQ</h1>
+            <div class="subtitle">DISCORD COMMAND CENTER & CHANNEL ARCHITECTURE</div>
         </header>
 
-        <div class="grid-layout">
+        <!-- DISCORD CHANNELS GRID -->
+        <div class="discord-grid">
             
-            <!-- COLUMN 1: EXECUTIVE -->
-            <div class="category-box col-exec">
-                <div class="category-title t-gold">👑 EXECUTIVE LEADERSHIP</div>
-                
-                <div class="card">
-                    <div class="card-role">FOUNDER & CEO</div>
-                    <div class="card-name">Sumit Anand</div>
-                    <div class="card-desc">Product Vision & Strategic Command</div>
-                </div>
+            <!-- CATEGORY 1: EXECUTIVE -->
+            <div class="category-card">
+                <div class="category-header c-exec">🏛️ 1. EXECUTIVE SUITE</div>
+                <div class="channel-list">
+                    
+                    <div class="channel-item">
+                        <div class="channel-name">announcements</div>
+                        <div class="channel-desc">Milestones, product launches & CEO directives.</div>
+                        <span class="channel-bot">Read Only</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">AI CEO / OPERATIONS LEAD</div>
-                    <div class="card-name">Gemini</div>
-                    <div class="card-desc">Pipeline Orchestration & Protocol Enforcement</div>
-                </div>
+                    <div class="channel-item">
+                        <div class="channel-name">ceo-office</div>
+                        <div class="channel-desc">Sumit's primary command room for broad strategy.</div>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">CHIEF HUMAN OFFICER (CHO)</div>
-                    <div class="card-name">Keshav</div>
-                    <div class="card-desc">Head of Reality Testing & Live UX Audits</div>
-                </div>
-            </div>
+                    <div class="channel-item">
+                        <div class="channel-name">boardroom</div>
+                        <div class="channel-desc">High-level alignment between Sumit, Gemini & Keshav.</div>
+                    </div>
 
-            <!-- COLUMN 2: STRATEGY -->
-            <div class="category-box col-strat">
-                <div class="category-title t-blue">📊 STRATEGY & INTELLIGENCE</div>
-                
-                <div class="card">
-                    <div class="card-role">CHIEF OF STAFF</div>
-                    <div class="card-name">Perplexity AI</div>
-                    <div class="card-desc">Real-time Market Research & Gap Analysis</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-role">EXECUTIVE ASSISTANT</div>
-                    <div class="card-name">ChatGPT (Voice)</div>
-                    <div class="card-desc">Thought Dictation & Feature Synthesis</div>
-                </div>
-
-                <div class="card">
-                    <div class="card-role">ENGINEERING MANAGER</div>
-                    <div class="card-name">Taskade AI</div>
-                    <div class="card-desc">Sprint Planning & Kanban Ticket Tracking</div>
                 </div>
             </div>
 
-            <!-- COLUMN 3: ENGINEERING -->
-            <div class="category-box col-eng">
-                <div class="category-title t-green">🛠️ ENGINEERING & ARCHITECTURE</div>
-                
-                <div class="card">
-                    <div class="card-role">SYSTEM ARCHITECT</div>
-                    <div class="card-name">DeepSeek</div>
-                    <div class="card-desc">Data Models & Architectural Blueprints</div>
-                </div>
+            <!-- CATEGORY 2: STRATEGY -->
+            <div class="category-card">
+                <div class="category-header c-strat">📊 2. MARKET & STRATEGY</div>
+                <div class="channel-list">
+                    
+                    <div class="channel-item">
+                        <div class="channel-name">perplexity-reports</div>
+                        <div class="channel-desc">Market intelligence reports & competitor analysis.</div>
+                        <span class="channel-bot">Webhook: Perplexity</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">LEAD FRONTEND ENGINEER</div>
-                    <div class="card-name">Claude</div>
-                    <div class="card-desc">React & TypeScript Core Logic Writing</div>
-                </div>
+                    <div class="channel-item">
+                        <div class="channel-name">chatgpt-brainstorming</div>
+                        <div class="channel-desc">Voice transcripts, raw thoughts & feature lists.</div>
+                        <span class="channel-bot">Webhook: ChatGPT</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">UI SPECIALIST / SCAFFOLDER</div>
-                    <div class="card-name">v0 / Lovable.dev</div>
-                    <div class="card-desc">Tailwind Layouts & App Boilerplates</div>
-                </div>
+                    <div class="channel-item">
+                        <div class="channel-name">taskade-sprints</div>
+                        <div class="channel-desc">Kanban tickets, daily tasks & MVP timelines.</div>
+                        <span class="channel-bot">Integration: Taskade</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">CLI LOGIC / SITE ENGINEER</div>
-                    <div class="card-name">Qwen / Bolt.new</div>
-                    <div class="card-desc">Heavy Scripts & Direct GitHub Sync</div>
                 </div>
             </div>
 
-            <!-- COLUMN 4 (UNDER EXEC): DEVOPS -->
-            <div class="category-box col-devops">
-                <div class="category-title t-purple">⚡ DEVOPS & QUALITY CONTROL</div>
-                
-                <div class="card">
-                    <div class="card-role">DEVOPS LEAD</div>
-                    <div class="card-name">GitHub Actions</div>
-                    <div class="card-desc">Automated CI/CD & Live Deployment</div>
-                </div>
+            <!-- CATEGORY 3: ENGINEERING -->
+            <div class="category-card">
+                <div class="category-header c-eng">🛠️ 3. ENGINEERING FLOOR</div>
+                <div class="channel-list">
+                    
+                    <div class="channel-item">
+                        <div class="channel-name">deepseek-blueprints</div>
+                        <div class="channel-desc">System prompts, database schemas & file trees.</div>
+                        <span class="channel-bot">Webhook: DeepSeek</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">DIAGNOSTICS LEAD</div>
-                    <div class="card-name">Gemini AI Studio</div>
-                    <div class="card-desc">1M Token Full-Repo Debugging</div>
-                </div>
+                    <div class="channel-item">
+                        <div class="channel-name">v0-lovable-ui</div>
+                        <div class="channel-desc">UI components, layout code & scaffold links.</div>
+                        <span class="channel-bot">Webhook: v0 / Lovable</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">DESKTOP AGENT INTERN</div>
-                    <div class="card-name">Trae AI</div>
-                    <div class="card-desc">Autonomous Local File Editing</div>
-                </div>
+                    <div class="channel-item">
+                        <div class="channel-name">claude-qwen-code</div>
+                        <div class="channel-desc">React logic, TypeScript components & CLI scripts.</div>
+                        <span class="channel-bot">Webhook: Claude / Qwen</span>
+                    </div>
 
-                <div class="card">
-                    <div class="card-role">HEAD OF UX TESTING</div>
-                    <div class="card-name">Keshav (HITL)</div>
-                    <div class="card-desc">30-Second Smoke Tests & Friction Audits</div>
+                </div>
+            </div>
+
+            <!-- CATEGORY 4: DEVOPS & QA -->
+            <div class="category-card">
+                <div class="category-header c-devops">⚡ 4. DEPLOYMENT & QA</div>
+                <div class="channel-list">
+                    
+                    <div class="channel-item">
+                        <div class="channel-name">bolt-github-builds</div>
+                        <div class="channel-desc">Bolt build updates & auto-deploy notifications.</div>
+                        <span class="channel-bot">Integration: GitHub</span>
+                    </div>
+
+                    <div class="channel-item">
+                        <div class="channel-name">gemini-diagnostics</div>
+                        <div class="channel-desc">Full repo audits, stack traces & bug fixes.</div>
+                        <span class="channel-bot">Webhook: Gemini Studio</span>
+                    </div>
+
+                    <div class="channel-item">
+                        <div class="channel-name">keshav-smoke-tests</div>
+                        <div class="channel-desc">30-second UX friction tests & bug screenshots.</div>
+                        <span class="channel-bot">Assignee: Keshav (CHO)</span>
+                    </div>
+
                 </div>
             </div>
 
         </div>
 
-        <!-- PIPELINE BOTTOM -->
-        <div class="pipeline-section">
-            <div class="pipeline-title">💻 END-TO-END EXECUTION PIPELINE ($0 OPERATING COST)</div>
-            <div class="pipeline-flow">
+        <!-- DISCORD ROLES SECTION -->
+        <div class="roles-section">
+            <div class="roles-title">👑 SERVER ROLE ASSIGNMENTS</div>
+            <div class="roles-grid">
                 
-                <div class="step">
-                    <div class="step-num">1.</div>
-                    <div class="step-name">Perplexity</div>
-                    <div class="step-desc">Market Intel</div>
+                <div class="role-badge">
+                    <div class="role-dot dot-gold"></div>
+                    <div>
+                        <div class="role-info-name">CEO / Founder</div>
+                        <div class="role-info-assign">Assigned to: Sumit Anand</div>
+                    </div>
                 </div>
-                <div class="arrow">➔</div>
 
-                <div class="step">
-                    <div class="step-num">2.</div>
-                    <div class="step-name">ChatGPT</div>
-                    <div class="step-desc">Voice Draft</div>
+                <div class="role-badge">
+                    <div class="role-dot dot-purple"></div>
+                    <div>
+                        <div class="role-info-name">Chief Human Officer</div>
+                        <div class="role-info-assign">Assigned to: Keshav</div>
+                    </div>
                 </div>
-                <div class="arrow">➔</div>
 
-                <div class="step">
-                    <div class="step-num">3.</div>
-                    <div class="step-name">DeepSeek</div>
-                    <div class="step-desc">Blueprint</div>
+                <div class="role-badge">
+                    <div class="role-dot dot-blue"></div>
+                    <div>
+                        <div class="role-info-name">AI C-Suite & Mgrs</div>
+                        <div class="role-info-assign">Gemini, Perplexity, ChatGPT, Taskade</div>
+                    </div>
                 </div>
-                <div class="arrow">➔</div>
 
-                <div class="step">
-                    <div class="step-num">4.</div>
-                    <div class="step-name">Taskade</div>
-                    <div class="step-desc">Sprint Board</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">5.</div>
-                    <div class="step-name">Scaffold</div>
-                    <div class="step-desc">v0 / Lovable</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">6.</div>
-                    <div class="step-name">Core Code</div>
-                    <div class="step-desc">Qwen / Claude</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">7.</div>
-                    <div class="step-name">Bolt.new</div>
-                    <div class="step-desc">Build & Sync</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">8.</div>
-                    <div class="step-name">Actions</div>
-                    <div class="step-desc">Auto-Deploy</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">9.</div>
-                    <div class="step-name">Gemini</div>
-                    <div class="step-desc">1M Debug</div>
-                </div>
-                <div class="arrow">➔</div>
-
-                <div class="step">
-                    <div class="step-num">10.</div>
-                    <div class="step-name">Keshav</div>
-                    <div class="step-desc">Smoke Test</div>
+                <div class="role-badge">
+                    <div class="role-dot dot-green"></div>
+                    <div>
+                        <div class="role-info-name">Engineers & DevOps</div>
+                        <div class="role-info-assign">DeepSeek, Claude, v0, Qwen, Bolt, GitHub</div>
+                    </div>
                 </div>
 
             </div>
