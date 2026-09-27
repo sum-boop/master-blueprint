@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Stack - Master Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060913;
+            color: #ffffff;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            width: 100%;
+            background: #0a0e17;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        /* HEADER STYLES */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 1.5rem;
+        }
+
+        h1 {
+            color: #3b82f6;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* GRID LAYOUT */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .col-exec { grid-column: 1; grid-row: 1; }
+        .col-devops { grid-column: 1; grid-row: 2; }
+        .col-strat { grid-column: 2; grid-row: 1 / span 2; }
+        .col-eng { grid-column: 3; grid-row: 1 / span 2; }
+
+        /* CATEGORY BOXES */
+        .category-box {
+            background: #0d121c;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .category-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .t-gold { color: #f59e0b; }
+        .t-blue { color: #3b82f6; }
+        .t-green { color: #10b981; }
+        .t-purple { color: #8b5cf6; }
+
+        /* ROLE CARDS */
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 6px;
+            padding: 1rem;
+            transition: border-color 0.2s;
+        }
+
+        .card:hover {
+            border-color: #374151;
+        }
+
+        .card-role {
+            font-size: 0.65rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-desc {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
+
+        /* PIPELINE SECTION */
+        .pipeline-section {
+            background: #0d121c;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .pipeline-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 0.75rem;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+        }
+
+        .step-num {
+            font-size: 0.65rem;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
+
+        .step-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 2px;
+        }
+
+        .step-desc {
+            font-size: 0.65rem;
+            color: #9ca3af;
+        }
+
+        .arrow {
+            color: #3b82f6;
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .col-strat { grid-column: 1; grid-row: auto; }
+            .col-eng { grid-column: 1; grid-row: auto; }
+            .col-devops { grid-column: 1; grid-row: auto; }
+            
+            .pipeline-flow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .arrow {
+                text-align: center;
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-container">
+        <header>
+            <h1>AI STACK</h1>
+            <div class="subtitle">MASTER STARTUP ORGANIZATIONAL BLUEPRINT • ZERO-PAYROLL ENGINE</div>
+        </header>
+
+        <div class="grid-layout">
+            
+            <!-- COLUMN 1: EXECUTIVE -->
+            <div class="category-box col-exec">
+                <div class="category-title t-gold">👑 EXECUTIVE LEADERSHIP</div>
+                
+                <div class="card">
+                    <div class="card-role">FOUNDER & CEO</div>
+                    <div class="card-name">Sumit Anand</div>
+                    <div class="card-desc">Product Vision & Strategic Command</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">AI CEO / OPERATIONS LEAD</div>
+                    <div class="card-name">Gemini</div>
+                    <div class="card-desc">Pipeline Orchestration & Protocol Enforcement</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">CHIEF HUMAN OFFICER (CHO)</div>
+                    <div class="card-name">Keshav</div>
+                    <div class="card-desc">Head of Reality Testing & Live UX Audits</div>
+                </div>
+            </div>
+
+            <!-- COLUMN 2: STRATEGY -->
+            <div class="category-box col-strat">
+                <div class="category-title t-blue">📊 STRATEGY & INTELLIGENCE</div>
+                
+                <div class="card">
+                    <div class="card-role">CHIEF OF STAFF</div>
+                    <div class="card-name">Perplexity AI</div>
+                    <div class="card-desc">Real-time Market Research & Gap Analysis</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">EXECUTIVE ASSISTANT</div>
+                    <div class="card-name">ChatGPT (Voice)</div>
+                    <div class="card-desc">Thought Dictation & Feature Synthesis</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">ENGINEERING MANAGER</div>
+                    <div class="card-name">Taskade AI</div>
+                    <div class="card-desc">Sprint Planning & Kanban Ticket Tracking</div>
+                </div>
+            </div>
+
+            <!-- COLUMN 3: ENGINEERING -->
+            <div class="category-box col-eng">
+                <div class="category-title t-green">🛠️ ENGINEERING & ARCHITECTURE</div>
+                
+                <div class="card">
+                    <div class="card-role">SYSTEM ARCHITECT</div>
+                    <div class="card-name">DeepSeek</div>
+                    <div class="card-desc">Data Models & Architectural Blueprints</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">LEAD FRONTEND ENGINEER</div>
+                    <div class="card-name">Claude</div>
+                    <div class="card-desc">React & TypeScript Core Logic Writing</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">UI SPECIALIST / SCAFFOLDER</div>
+                    <div class="card-name">v0 / Lovable.dev</div>
+                    <div class="card-desc">Tailwind Layouts & App Boilerplates</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">CLI LOGIC / SITE ENGINEER</div>
+                    <div class="card-name">Qwen / Bolt.new</div>
+                    <div class="card-desc">Heavy Scripts & Direct GitHub Sync</div>
+                </div>
+            </div>
+
+            <!-- COLUMN 4 (UNDER EXEC): DEVOPS -->
+            <div class="category-box col-devops">
+                <div class="category-title t-purple">⚡ DEVOPS & QUALITY CONTROL</div>
+                
+                <div class="card">
+                    <div class="card-role">DEVOPS LEAD</div>
+                    <div class="card-name">GitHub Actions</div>
+                    <div class="card-desc">Automated CI/CD & Live Deployment</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">DIAGNOSTICS LEAD</div>
+                    <div class="card-name">Gemini AI Studio</div>
+                    <div class="card-desc">1M Token Full-Repo Debugging</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">DESKTOP AGENT INTERN</div>
+                    <div class="card-name">Trae AI</div>
+                    <div class="card-desc">Autonomous Local File Editing</div>
+                </div>
+
+                <div class="card">
+                    <div class="card-role">HEAD OF UX TESTING</div>
+                    <div class="card-name">Keshav (HITL)</div>
+                    <div class="card-desc">30-Second Smoke Tests & Friction Audits</div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- PIPELINE BOTTOM -->
+        <div class="pipeline-section">
+            <div class="pipeline-title">💻 END-TO-END EXECUTION PIPELINE ($0 OPERATING COST)</div>
+            <div class="pipeline-flow">
+                
+                <div class="step">
+                    <div class="step-num">1.</div>
+                    <div class="step-name">Perplexity</div>
+                    <div class="step-desc">Market Intel</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">2.</div>
+                    <div class="step-name">ChatGPT</div>
+                    <div class="step-desc">Voice Draft</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">3.</div>
+                    <div class="step-name">DeepSeek</div>
+                    <div class="step-desc">Blueprint</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">4.</div>
+                    <div class="step-name">Taskade</div>
+                    <div class="step-desc">Sprint Board</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">5.</div>
+                    <div class="step-name">Scaffold</div>
+                    <div class="step-desc">v0 / Lovable</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">6.</div>
+                    <div class="step-name">Core Code</div>
+                    <div class="step-desc">Qwen / Claude</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">7.</div>
+                    <div class="step-name">Bolt.new</div>
+                    <div class="step-desc">Build & Sync</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">8.</div>
+                    <div class="step-name">Actions</div>
+                    <div class="step-desc">Auto-Deploy</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">9.</div>
+                    <div class="step-name">Gemini</div>
+                    <div class="step-desc">1M Debug</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">10.</div>
+                    <div class="step-name">Keshav</div>
+                    <div class="step-desc">Smoke Test</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</body>
+  </html>
+  
