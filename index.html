@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Stack - Setup Part 7</title>
+    <title>AI Stack - Setup Part 8</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap');
 
@@ -43,7 +43,7 @@
             left: 0;
             right: 0;
             height: 4px;
-            background: linear-gradient(90deg, #8b5cf6, #c026d3, #a855f7);
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa);
         }
 
         header {
@@ -52,9 +52,9 @@
         }
 
         .part-badge {
-            background: rgba(139, 92, 246, 0.1);
-            color: #a78bfa;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+            background: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            border: 1px solid rgba(59, 130, 246, 0.3);
             padding: 6px 16px;
             border-radius: 20px;
             font-size: 0.75rem;
@@ -96,7 +96,7 @@
 
         .module-card:hover {
             transform: translateY(-5px);
-            border-color: #8b5cf6;
+            border-color: #3b82f6;
         }
 
         .icon-circle {
@@ -110,9 +110,9 @@
             margin-bottom: 1.5rem;
         }
 
-        .bg-purple { background: rgba(139, 92, 246, 0.1); color: #a78bfa; border: 1px solid rgba(139, 92, 246, 0.2); }
-        .bg-fuchsia { background: rgba(192, 38, 211, 0.1); color: #e879f9; border: 1px solid rgba(192, 38, 211, 0.2); }
-        .bg-violet { background: rgba(168, 85, 247, 0.1); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.2); }
+        .bg-blue { background: rgba(37, 99, 235, 0.1); color: #60a5fa; border: 1px solid rgba(37, 99, 235, 0.2); }
+        .bg-sky { background: rgba(14, 165, 233, 0.1); color: #38bdf8; border: 1px solid rgba(14, 165, 233, 0.2); }
+        .bg-indigo { background: rgba(79, 70, 229, 0.1); color: #818cf8; border: 1px solid rgba(79, 70, 229, 0.2); }
 
         .module-title {
             font-size: 1.1rem;
@@ -139,7 +139,7 @@
 
         .module-list li::before {
             content: '→';
-            color: #a78bfa;
+            color: #60a5fa;
             font-weight: bold;
         }
 
@@ -154,43 +154,43 @@
 
     <div class="infographic-wrapper">
         <header>
-            <div class="part-badge">Part 7 of 10</div>
-            <h1>DIAGNOSTICS & QA</h1>
-            <div class="subtitle">Utilizing 1M token context windows for full-repository bug hunting and stack trace analysis.</div>
+            <div class="part-badge">Part 8 of 10</div>
+            <h1>THE DESKTOP AGENT</h1>
+            <div class="subtitle">Bringing autonomous agentic editing to local environments when projects outgrow the browser.</div>
         </header>
 
         <div class="grid-container">
             
             <!-- Module 1 -->
             <div class="module-card">
-                <div class="icon-circle bg-purple">🔍</div>
-                <div class="module-title">1. Gemini Studio</div>
+                <div class="icon-circle bg-blue">💻</div>
+                <div class="module-title">1. Trae AI Client</div>
                 <ul class="module-list">
-                    <li>Access Google AI Studio with the unified corporate account.</li>
-                    <li>Create a reusable prompt template named "Repo Audit".</li>
-                    <li>Keep a local ZIP of the GitHub repository handy for rapid uploads.</li>
+                    <li>Download the free Trae AI IDE desktop client.</li>
+                    <li>Authenticate using the unified corporate GitHub account.</li>
+                    <li>Clone the <strong>AI-Stack-HQ</strong> repository locally to your machine.</li>
                 </ul>
             </div>
 
             <!-- Module 2 -->
             <div class="module-card">
-                <div class="icon-circle bg-fuchsia">🐛</div>
-                <div class="module-title">2. The Debug Loop</div>
+                <div class="icon-circle bg-sky">🤖</div>
+                <div class="module-title">2. Agentic Refactoring</div>
                 <ul class="module-list">
-                    <li>When GitHub Actions fails, download the terminal build logs.</li>
-                    <li>Drop the logs AND the entire repo ZIP into Gemini's 1M token window.</li>
-                    <li>Prompt: "Find the exact syntax error causing this build failure."</li>
+                    <li>Utilize Trae when your app becomes too complex for Bolt.new's mobile browser environment.</li>
+                    <li>Prompt the built-in AI agent to execute sweeping, multi-file codebase refactors autonomously.</li>
+                    <li>Review the file tree changes before committing.</li>
                 </ul>
             </div>
 
             <!-- Module 3 -->
             <div class="module-card">
-                <div class="icon-circle bg-violet">🛠️</div>
-                <div class="module-title">3. Resolution Sync</div>
+                <div class="icon-circle bg-indigo">🔄</div>
+                <div class="module-title">3. Pipeline Re-entry</div>
                 <ul class="module-list">
-                    <li>Copy the isolated code fix provided by Gemini.</li>
-                    <li>Feed the corrected code back into Bolt.new or Qwen to apply the patch.</li>
-                    <li>Log the post-mortem in the <code>#gemini-diagnostics</code> Discord channel.</li>
+                    <li>Commit and push the locally edited code back to the GitHub master branch.</li>
+                    <li>This action automatically re-triggers GitHub Actions (Part 6).</li>
+                    <li>The DevOps loop deploys the heavy desktop edits seamlessly to the live URL.</li>
                 </ul>
             </div>
 
