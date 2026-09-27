@@ -1,399 +1,415 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI STACK - Master Startup Organizational Blueprint</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
-<style>
-  @page {
-    size: A3 landscape;
-    margin: 0;
-  }
-  
-  :root {
-    --bg-main: #06090e;
-    --bg-panel: #0d1117;
-    --bg-card: #161b22;
-    --border-dim: #30363d;
-    --text-main: #c9d1d9;
-    --text-muted: #8b949e;
-    --c-gold: #e3b341;
-    --c-blue: #58a6ff;
-    --c-green: #3fb950;
-    --c-purple: #bc8cff;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Stack - Master Blueprint</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--bg-main);
-    color: var(--text-main);
-    padding: 2vw;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #060913;
+            color: #ffffff;
+            padding: 2rem;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
 
-  .blueprint-container {
-    background: linear-gradient(145deg, var(--bg-panel) 0%, var(--bg-main) 100%);
-    border: 1px solid var(--border-dim);
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255,255,255,0.05);
-    border-radius: 16px;
-    padding: 35px 45px;
-    width: 100%;
-    max-width: 1600px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
+        .dashboard-container {
+            max-width: 1200px;
+            width: 100%;
+            background: #0a0e17;
+            border: 1px solid #1e293b;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
 
-  header {
-    text-align: center;
-    border-bottom: 1px solid var(--border-dim);
-    padding-bottom: 25px;
-    position: relative;
-  }
-  
-  header::after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 150px;
-    height: 1px;
-    background: var(--c-blue);
-    box-shadow: 0 0 10px var(--c-blue);
-  }
+        /* HEADER STYLES */
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 1.5rem;
+        }
 
-  header h1 {
-    font-size: 38px;
-    font-weight: 800;
-    letter-spacing: 5px;
-    color: var(--c-blue);
-    text-transform: uppercase;
-    margin-bottom: 8px;
-    text-shadow: 0 0 20px rgba(88, 166, 255, 0.3);
-  }
+        h1 {
+            color: #3b82f6;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+            margin-bottom: 0.5rem;
+        }
 
-  header p {
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-  }
-  
-  .tree-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 25px;
-  }
-  
-  .column {
-    background: rgba(13, 17, 23, 0.6);
-    border: 1px solid var(--border-dim);
-    border-radius: 12px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    backdrop-filter: blur(10px);
-  }
-  
-  .column-title {
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    padding-bottom: 12px;
-    border-bottom: 1px dashed var(--border-dim);
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
+        .subtitle {
+            color: #64748b;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-  .c-gold { color: var(--c-gold); }
-  .c-blue { color: var(--c-blue); }
-  .c-green { color: var(--c-green); }
-  .c-purple { color: var(--c-purple); }
+        /* GRID LAYOUT */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
 
-  .node-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border-dim);
-    border-left: 4px solid;
-    border-radius: 8px;
-    padding: 14px 16px;
-    transition: all 0.2s ease;
-    position: relative;
-    overflow: hidden;
-  }
+        .col-exec { grid-column: 1; grid-row: 1; }
+        .col-devops { grid-column: 1; grid-row: 2; }
+        .col-strat { grid-column: 2; grid-row: 1 / span 2; }
+        .col-eng { grid-column: 3; grid-row: 1 / span 2; }
 
-  /* Subtle gradient hover effect for web viewing */
-  .node-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
-    border-color: #484f58;
-  }
+        /* CATEGORY BOXES */
+        .category-box {
+            background: #0d121c;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
 
-  .gold-border { border-left-color: var(--c-gold); }
-  .blue-border { border-left-color: var(--c-blue); }
-  .green-border { border-left-color: var(--c-green); }
-  .purple-border { border-left-color: var(--c-purple); }
+        .category-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-  .node-role {
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    color: var(--text-muted);
-  }
+        .t-gold { color: #f59e0b; }
+        .t-blue { color: #3b82f6; }
+        .t-green { color: #10b981; }
+        .t-purple { color: #8b5cf6; }
 
-  .node-name {
-    font-size: 17px;
-    font-weight: 700;
-    color: #f0f6fc;
-    margin: 4px 0;
-    letter-spacing: 0.5px;
-  }
+        /* ROLE CARDS */
+        .card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 6px;
+            padding: 1rem;
+            transition: border-color 0.2s;
+        }
 
-  .node-desc {
-    font-size: 12px;
-    color: var(--text-muted);
-    line-height: 1.4;
-  }
+        .card:hover {
+            border-color: #374151;
+        }
 
-  .pipeline-section {
-    border: 1px solid var(--border-dim);
-    background: linear-gradient(90deg, rgba(13,17,23,1) 0%, rgba(22,27,34,1) 50%, rgba(13,17,23,1) 100%);
-    border-radius: 12px;
-    padding: 20px 25px;
-  }
+        .card-role {
+            font-size: 0.65rem;
+            color: #6b7280;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
 
-  .pipeline-title {
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--c-blue);
-    margin-bottom: 15px;
-    text-align: center;
-  }
+        .card-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 0.25rem;
+        }
 
-  .pipeline-flow {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap;
-  }
+        .card-desc {
+            font-size: 0.75rem;
+            color: #9ca3af;
+            line-height: 1.4;
+        }
 
-  .pipe-step {
-    background: var(--bg-card);
-    border: 1px solid var(--border-dim);
-    padding: 10px;
-    border-radius: 6px;
-    font-size: 11px;
-    text-align: center;
-    flex: 1;
-    min-width: 0;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  }
+        /* PIPELINE SECTION */
+        .pipeline-section {
+            background: #0d121c;
+            border: 1px solid #1e293b;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
 
-  .pipe-step strong {
-    display: block;
-    color: #f0f6fc;
-    margin-bottom: 4px;
-    font-size: 12px;
-  }
+        .pipeline-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #3b82f6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
 
-  .arrow {
-    color: var(--text-muted);
-    font-weight: bold;
-    font-size: 16px;
-    opacity: 0.5;
-  }
+        .pipeline-flow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
 
-  footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-top: 1px solid var(--border-dim);
-    padding-top: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
+        .step {
+            background: #111827;
+            border: 1px solid #1f2937;
+            padding: 0.75rem;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+        }
 
-  footer span:nth-child(2) {
-    color: var(--c-green);
-  }
+        .step-num {
+            font-size: 0.65rem;
+            color: #6b7280;
+            margin-bottom: 2px;
+        }
 
-  @media print {
-    body { padding: 0; background-color: var(--bg-main); }
-    .blueprint-container { border: none; box-shadow: none; border-radius: 0; }
-  }
-</style>
+        .step-name {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #f3f4f6;
+            margin-bottom: 2px;
+        }
+
+        .step-desc {
+            font-size: 0.65rem;
+            color: #9ca3af;
+        }
+
+        .arrow {
+            color: #3b82f6;
+            font-size: 1rem;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .grid-layout {
+                grid-template-columns: 1fr;
+            }
+            .col-strat { grid-column: 1; grid-row: auto; }
+            .col-eng { grid-column: 1; grid-row: auto; }
+            .col-devops { grid-column: 1; grid-row: auto; }
+            
+            .pipeline-flow {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .arrow {
+                text-align: center;
+                transform: rotate(90deg);
+                margin: 5px 0;
+            }
+        }
+    </style>
 </head>
 <body>
 
-<main class="blueprint-container">
-  <header>
-    <h1>AI STACK</h1>
-    <p>Master Startup Organizational Blueprint • Zero-Payroll Engine</p>
-  </header>
+    <div class="dashboard-container">
+        <header>
+            <h1>AI STACK</h1>
+            <div class="subtitle">MASTER STARTUP ORGANIZATIONAL BLUEPRINT • ZERO-PAYROLL ENGINE</div>
+        </header>
 
-  <div class="tree-grid">
-    
-    <!-- EXECUTIVE & C-SUITE -->
-    <section class="column">
-      <div class="column-title c-gold">👑 Executive Leadership</div>
-      
-      <article class="node-card gold-border">
-        <div class="node-role">Founder & CEO</div>
-        <div class="node-name">Sumit Anand</div>
-        <div class="node-desc">Product Vision & Strategic Command</div>
-      </article>
+        <div class="grid-layout">
+            
+            <!-- COLUMN 1: EXECUTIVE -->
+            <div class="category-box col-exec">
+                <div class="category-title t-gold">👑 EXECUTIVE LEADERSHIP</div>
+                
+                <div class="card">
+                    <div class="card-role">FOUNDER & CEO</div>
+                    <div class="card-name">Sumit Anand</div>
+                    <div class="card-desc">Product Vision & Strategic Command</div>
+                </div>
 
-      <article class="node-card gold-border">
-        <div class="node-role">AI CEO / Operations Lead</div>
-        <div class="node-name">Gemini</div>
-        <div class="node-desc">Pipeline Orchestration & Protocol Enforcement</div>
-      </article>
+                <div class="card">
+                    <div class="card-role">AI CEO / OPERATIONS LEAD</div>
+                    <div class="card-name">Gemini</div>
+                    <div class="card-desc">Pipeline Orchestration & Protocol Enforcement</div>
+                </div>
 
-      <article class="node-card gold-border">
-        <div class="node-role">Chief Human Officer (CHO)</div>
-        <div class="node-name">Keshav</div>
-        <div class="node-desc">Head of Reality Testing & Live UX Audits</div>
-      </article>
-    </section>
+                <div class="card">
+                    <div class="card-role">CHIEF HUMAN OFFICER (CHO)</div>
+                    <div class="card-name">Keshav</div>
+                    <div class="card-desc">Head of Reality Testing & Live UX Audits</div>
+                </div>
+            </div>
 
-    <!-- STRATEGY & MANAGEMENT -->
-    <section class="column">
-      <div class="column-title c-blue">📊 Strategy & Intelligence</div>
-      
-      <article class="node-card blue-border">
-        <div class="node-role">Chief of Staff</div>
-        <div class="node-name">Perplexity AI</div>
-        <div class="node-desc">Real-time Market Research & Gap Analysis</div>
-      </article>
+            <!-- COLUMN 2: STRATEGY -->
+            <div class="category-box col-strat">
+                <div class="category-title t-blue">📊 STRATEGY & INTELLIGENCE</div>
+                
+                <div class="card">
+                    <div class="card-role">CHIEF OF STAFF</div>
+                    <div class="card-name">Perplexity AI</div>
+                    <div class="card-desc">Real-time Market Research & Gap Analysis</div>
+                </div>
 
-      <article class="node-card blue-border">
-        <div class="node-role">Executive Assistant</div>
-        <div class="node-name">ChatGPT (Voice)</div>
-        <div class="node-desc">Thought Dictation & Feature Synthesis</div>
-      </article>
+                <div class="card">
+                    <div class="card-role">EXECUTIVE ASSISTANT</div>
+                    <div class="card-name">ChatGPT (Voice)</div>
+                    <div class="card-desc">Thought Dictation & Feature Synthesis</div>
+                </div>
 
-      <article class="node-card blue-border">
-        <div class="node-role">Engineering Manager</div>
-        <div class="node-name">Taskade AI</div>
-        <div class="node-desc">Sprint Planning & Kanban Ticket Tracking</div>
-      </article>
-    </section>
+                <div class="card">
+                    <div class="card-role">ENGINEERING MANAGER</div>
+                    <div class="card-name">Taskade AI</div>
+                    <div class="card-desc">Sprint Planning & Kanban Ticket Tracking</div>
+                </div>
+            </div>
 
-    <!-- ENGINEERING FLOOR -->
-    <section class="column">
-      <div class="column-title c-green">🛠️ Engineering & Architecture</div>
-      
-      <article class="node-card green-border">
-        <div class="node-role">System Architect</div>
-        <div class="node-name">DeepSeek</div>
-        <div class="node-desc">Data Models & Architectural Blueprints</div>
-      </article>
+            <!-- COLUMN 3: ENGINEERING -->
+            <div class="category-box col-eng">
+                <div class="category-title t-green">🛠️ ENGINEERING & ARCHITECTURE</div>
+                
+                <div class="card">
+                    <div class="card-role">SYSTEM ARCHITECT</div>
+                    <div class="card-name">DeepSeek</div>
+                    <div class="card-desc">Data Models & Architectural Blueprints</div>
+                </div>
 
-      <article class="node-card green-border">
-        <div class="node-role">Lead Frontend Engineer</div>
-        <div class="node-name">Claude</div>
-        <div class="node-desc">React & TypeScript Core Logic Writing</div>
-      </article>
+                <div class="card">
+                    <div class="card-role">LEAD FRONTEND ENGINEER</div>
+                    <div class="card-name">Claude</div>
+                    <div class="card-desc">React & TypeScript Core Logic Writing</div>
+                </div>
 
-      <article class="node-card green-border">
-        <div class="node-role">UI Specialist / Scaffolder</div>
-        <div class="node-name">v0 / Lovable.dev</div>
-        <div class="node-desc">Tailwind Layouts & App Boilerplates</div>
-      </article>
+                <div class="card">
+                    <div class="card-role">UI SPECIALIST / SCAFFOLDER</div>
+                    <div class="card-name">v0 / Lovable.dev</div>
+                    <div class="card-desc">Tailwind Layouts & App Boilerplates</div>
+                </div>
 
-      <article class="node-card green-border">
-        <div class="node-role">CLI Logic / Site Engineer</div>
-        <div class="node-name">Qwen / Bolt.new</div>
-        <div class="node-desc">Heavy Scripts & Direct GitHub Sync</div>
-      </article>
-    </section>
+                <div class="card">
+                    <div class="card-role">CLI LOGIC / SITE ENGINEER</div>
+                    <div class="card-name">Qwen / Bolt.new</div>
+                    <div class="card-desc">Heavy Scripts & Direct GitHub Sync</div>
+                </div>
+            </div>
 
-    <!-- DEVOPS & QUALITY ASSURANCE -->
-    <section class="column">
-      <div class="column-title c-purple">⚡ DevOps & Quality Control</div>
-      
-      <article class="node-card purple-border">
-        <div class="node-role">DevOps Lead</div>
-        <div class="node-name">GitHub Actions</div>
-        <div class="node-desc">Automated CI/CD & Live Deployment</div>
-      </article>
-      
-      <article class="node-card purple-border">
-        <div class="node-role">Diagnostics Lead</div>
-        <div class="node-name">Gemini AI Studio</div>
-        <div class="node-desc">1M Token Full-Repo Debugging</div>
-      </article>
+            <!-- COLUMN 4 (UNDER EXEC): DEVOPS -->
+            <div class="category-box col-devops">
+                <div class="category-title t-purple">⚡ DEVOPS & QUALITY CONTROL</div>
+                
+                <div class="card">
+                    <div class="card-role">DEVOPS LEAD</div>
+                    <div class="card-name">GitHub Actions</div>
+                    <div class="card-desc">Automated CI/CD & Live Deployment</div>
+                </div>
 
-      <article class="node-card purple-border">
-        <div class="node-role">Desktop Agent Intern</div>
-        <div class="node-name">Trae AI</div>
-        <div class="node-desc">Autonomous Local File Editing</div>
-      </article>
+                <div class="card">
+                    <div class="card-role">DIAGNOSTICS LEAD</div>
+                    <div class="card-name">Gemini AI Studio</div>
+                    <div class="card-desc">1M Token Full-Repo Debugging</div>
+                </div>
 
-      <article class="node-card purple-border">
-        <div class="node-role">Head of UX Testing</div>
-        <div class="node-name">Keshav (HITL)</div>
-        <div class="node-desc">30-Second Smoke Tests & Friction Audits</div>
-      </article>
-    </section>
+                <div class="card">
+                    <div class="card-role">DESKTOP AGENT INTERN</div>
+                    <div class="card-name">Trae AI</div>
+                    <div class="card-desc">Autonomous Local File Editing</div>
+                </div>
 
-  </div>
+                <div class="card">
+                    <div class="card-role">HEAD OF UX TESTING</div>
+                    <div class="card-name">Keshav (HITL)</div>
+                    <div class="card-desc">30-Second Smoke Tests & Friction Audits</div>
+                </div>
+            </div>
 
-  <!-- PIPELINE FLOW -->
-  <section class="pipeline-section">
-    <div class="pipeline-title">🔄 End-to-End Execution Pipeline ($0 Operating Cost)</div>
-    <div class="pipeline-flow">
-      <div class="pipe-step"><strong>1. Perplexity</strong>Market Intel</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>2. ChatGPT</strong>Voice Draft</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>3. DeepSeek</strong>Blueprint</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>4. Taskade</strong>Sprint Board</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>5. Scaffold</strong>v0 / Lovable</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>6. Core Code</strong>Qwen / Claude</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>7. Bolt.new</strong>Build & Sync</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>8. Actions</strong>Auto-Deploy</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>9. Gemini</strong>1M Debug</div>
-      <span class="arrow">→</span>
-      <div class="pipe-step"><strong>10. Keshav</strong>Smoke Test</div>
+        </div>
+
+        <!-- PIPELINE BOTTOM -->
+        <div class="pipeline-section">
+            <div class="pipeline-title">💻 END-TO-END EXECUTION PIPELINE ($0 OPERATING COST)</div>
+            <div class="pipeline-flow">
+                
+                <div class="step">
+                    <div class="step-num">1.</div>
+                    <div class="step-name">Perplexity</div>
+                    <div class="step-desc">Market Intel</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">2.</div>
+                    <div class="step-name">ChatGPT</div>
+                    <div class="step-desc">Voice Draft</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">3.</div>
+                    <div class="step-name">DeepSeek</div>
+                    <div class="step-desc">Blueprint</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">4.</div>
+                    <div class="step-name">Taskade</div>
+                    <div class="step-desc">Sprint Board</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">5.</div>
+                    <div class="step-name">Scaffold</div>
+                    <div class="step-desc">v0 / Lovable</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">6.</div>
+                    <div class="step-name">Core Code</div>
+                    <div class="step-desc">Qwen / Claude</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">7.</div>
+                    <div class="step-name">Bolt.new</div>
+                    <div class="step-desc">Build & Sync</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">8.</div>
+                    <div class="step-name">Actions</div>
+                    <div class="step-desc">Auto-Deploy</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">9.</div>
+                    <div class="step-name">Gemini</div>
+                    <div class="step-desc">1M Debug</div>
+                </div>
+                <div class="arrow">➔</div>
+
+                <div class="step">
+                    <div class="step-num">10.</div>
+                    <div class="step-name">Keshav</div>
+                    <div class="step-desc">Smoke Test</div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
-  </section>
-
-  <footer>
-    <span>Company: AI Stack</span>
-    <span>Operational Status: Active Pipeline</span>
-    <span>Budget: $0.00 / Lifetime</span>
-  </footer>
-</main>
 
 </body>
 </html>
